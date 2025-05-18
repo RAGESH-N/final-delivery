@@ -1,0 +1,32 @@
+.add-restaurant-page {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/assets/Restaurent_sign-up.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.form-wrapper {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    max-width: 900px;
+}
+
+h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+label {
+    font-weight: 600;
+    color: #343a40;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+    border: 1px solid #dc3545;
+    background-color: #fff0f0;
+}
+
+button[type='submit'] {
+    font-size: 16px;
+    border-radius: 6px;
+}

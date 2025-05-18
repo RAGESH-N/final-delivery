@@ -1,0 +1,33 @@
+.cart-container {
+  background: linear-gradient(to right, #f8f9fa, #f1f5f9);
+  min-height: 100vh;
+}
+
+.cart-section,
+.location-section {
+  border-radius: 12px;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.quantity-input {
+  width: 70px;
+  padding: 4px;
+}
+
+@media (max-width: 576px) {
+  .table-responsive {
+    font-size: 14px;
+  }
+
+  .quantity-input {
+    width: 50px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}

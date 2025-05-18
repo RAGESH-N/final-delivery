@@ -1,0 +1,77 @@
+<!-- Sticky Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm px-3">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold fs-4" href="#">🍽️ FoodieDelivery</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+            <div class="navbar-nav">
+                <a class="nav-link" routerLink="/order-history">Order History</a>
+                <a class="nav-link" routerLink="/view-cart">View Cart</a>
+                <a class="nav-link" routerLink="/famous-restaurants">Famous Restaurants</a>
+            </div>
+            <div class="d-flex align-items-center">
+                
+                <span class="text-white me-3 username" (click)="goToProfile()">{{ userId }}</span>
+                <button class="btn btn-sm btn-danger" (click)="onSignout()">Sign Out</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4 text-primary">Explore Delicious Dishes</h2>
+
+    <!-- Search and Filters -->
+    <div class="row mb-4 g-3 justify-content-center">
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Search by Restaurant or Dish Name" [(ngModel)]="searchQuery" />
+        </div>
+        <div class="col-md-6 d-flex justify-content-center align-items-center flex-wrap gap-3">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="type" [(ngModel)]="selectedType" value="" />
+                <label class="form-check-label">All</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="type" [(ngModel)]="selectedType" value="veg" />
+                <label class="form-check-label">Veg</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="type" [(ngModel)]="selectedType" value="non-veg" />
+                <label class="form-check-label">Non-Veg</label>
+            </div>
+            <select class="form-select form-select-sm w-auto" [(ngModel)]="priceSort" aria-label="Sort by price">
+        <option value="">Sort by Price</option>
+        <option value="asc">Low to High</option>
+        <option value="desc">High to Low</option>
+      </select>
+        </div>
+    </div>
+
+    <!-- Dish Cards -->
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let dish of filteredDishes">
+            <div class="card h-100 shadow-sm border-0">
+                <img [src]="'http://localhost:3000' + dish.image" class="card-img-top" [alt]="dish.dishName" style="height: 200px; object-fit: cover;" />
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <span *ngIf="dish.type?.toLowerCase() === 'veg'; else nonVeg" class="veg-icon me-2" title="Vegetarian"></span>
+                        <ng-template #nonVeg>
+                            <span class="nonveg-icon me-2" title="Non-Vegetarian"></span>
+                        </ng-template>
+                        <h5 class="card-title mb-0">{{ dish.dishName }}</h5>
+                    </div>
+                    <p class="mb-1"><strong>Cuisine:</strong> {{ dish.cuisine }}</p>
+                    <p class="mb-1 text-muted">{{ dish.description }}</p>
+                    <p class="mb-1"><strong>Price:</strong> ₹{{ dish.price }}</p>
+                    <p class="mb-1"><strong>Restaurant:</strong> {{ dish.restaurantName }}</p>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <button class="btn btn-primary w-100" (click)="addToCart(dish)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

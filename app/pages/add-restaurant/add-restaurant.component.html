@@ -1,0 +1,93 @@
+<div class="add-restaurant-page d-flex align-items-center justify-content-center min-vh-100">
+    <div class="form-wrapper container bg-white p-4 shadow rounded">
+        <h2 class="text-center text-danger fw-bold mb-4"><i class="fa-solid fa-cutlery" aria-hidden="true"></i> Add a New Restaurant</h2>
+
+        <form (ngSubmit)="addRestaurant()" #restaurantForm="ngForm" novalidate>
+            <div class="row g-3">
+                <!-- Restaurant Name -->
+                <div class="col-md-6">
+                    <label for="restaurantName" class="form-label">Restaurant Name</label>
+                    <input type="text" class="form-control" id="restaurantName" name="restaurantName" [(ngModel)]="restaurant.restaurantName" required #restaurantName="ngModel" />
+                    <div *ngIf="restaurantName.invalid && restaurantName.touched" class="text-danger small">Required.</div>
+                </div>
+
+                <!-- Shop Owner Name -->
+                <div class="col-md-6">
+                    <label for="shopOwnerName" class="form-label">Shop Owner Name</label>
+                    <input type="text" class="form-control" id="shopOwnerName" name="shopOwnerName" [(ngModel)]="restaurant.shopOwnerName" required #shopOwnerName="ngModel" />
+                    <div *ngIf="shopOwnerName.invalid && shopOwnerName.touched" class="text-danger small">Required.</div>
+                </div>
+
+                <!-- Shop Address -->
+                <div class="col-12">
+                    <label for="shopAddress" class="form-label">Shop Address</label>
+                    <textarea class="form-control" id="shopAddress" name="shopAddress" rows="2" [(ngModel)]="restaurant.shopAddress" required #shopAddress="ngModel"></textarea>
+                    <div *ngIf="shopAddress.invalid && shopAddress.touched" class="text-danger small">Required.</div>
+                </div>
+
+                <!-- FSSAI Code -->
+                <div class="col-md-6">
+                    <label for="fssaiCode" class="form-label">FSSAI Code</label>
+                    <input type="text" class="form-control" id="fssaiCode" name="fssaiCode" [(ngModel)]="restaurant.fssaiCode" pattern="^[0-9]{12}$" required #fssaiCode="ngModel" />
+                    <div *ngIf="fssaiCode.invalid && fssaiCode.touched" class="text-danger small">12 digits required.</div>
+                </div>
+
+                <!-- Aadhar Number -->
+                <div class="col-md-6">
+                    <label for="aadharNumber" class="form-label">Aadhar Number</label>
+                    <input type="text" class="form-control" id="aadharNumber" name="aadharNumber" [(ngModel)]="restaurant.aadharNumber" pattern="^[0-9]{16}$" required #aadharNumber="ngModel" />
+                    <div *ngIf="aadharNumber.invalid && aadharNumber.touched" class="text-danger small">16 digits required.</div>
+                </div>
+
+                <!-- Phone Number -->
+                <div class="col-md-6">
+                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" [(ngModel)]="restaurant.phoneNumber" pattern="^[0-9]{10}$" required #phoneNumber="ngModel" />
+                    <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="text-danger small">10 digits required.</div>
+                </div>
+
+                <!-- City -->
+                <div class="col-md-6">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" id="city" name="city" [(ngModel)]="restaurant.city" required #city="ngModel" />
+                    <div *ngIf="city.invalid && city.touched" class="text-danger small">Required.</div>
+                </div>
+
+                <!-- Geo Location -->
+                <div class="col-md-6">
+                    <label for="geoLocation" class="form-label">Geo Location</label>
+                    <input type="text" class="form-control" id="geoLocation" name="geoLocation" placeholder="e.g., 12.9716,77.5946" [(ngModel)]="restaurant.geoLocation" required #geoLocation="ngModel" />
+                    <div *ngIf="geoLocation.invalid && geoLocation.touched" class="text-danger small">Format: lat,long</div>
+                </div>
+
+                <!-- Bank Account Number -->
+                <div class="col-md-6">
+                    <label for="bankAccountNumber" class="form-label">Bank Account Number</label>
+                    <input type="text" class="form-control" id="bankAccountNumber" name="bankAccountNumber" [(ngModel)]="restaurant.bankAccountNumber" pattern="^[0-9]{12}$" required #bankAccountNumber="ngModel" />
+                    <div *ngIf="bankAccountNumber.invalid && bankAccountNumber.touched" class="text-danger small">12 digits required.</div>
+                </div>
+
+                <!-- Password -->
+                <div class="col-md-6">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" [(ngModel)]="restaurant.password" pattern="^[0-9]{8}$" required #password="ngModel" />
+                    <div *ngIf="password.invalid && password.touched" class="text-danger small">8 digits required.</div>
+                </div>
+
+                <!-- Email -->
+                <div class="col-md-6">
+                    <label for="mailId" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="mailId" name="mailId" [(ngModel)]="restaurant.mailId" required #mailId="ngModel" />
+                    <div *ngIf="mailId.invalid && mailId.touched" class="text-danger small">Valid email required.</div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-4">
+                <button type="submit" class="btn btn-danger w-100 fw-bold py-2 shadow" [disabled]="restaurantForm.invalid">
+          <i class="fa-solid fa-plus"></i> Add Restaurant
+        </button>
+            </div>
+        </form>
+    </div>
+</div>

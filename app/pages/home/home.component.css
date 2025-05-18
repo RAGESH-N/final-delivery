@@ -1,0 +1,19 @@
+.dot {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid;
+}
+.dot-veg {
+  background-color: green;
+  border-color: green;
+}
+.dot-nonveg {
+  background-color: red;
+  border-color: red;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

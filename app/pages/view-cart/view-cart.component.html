@@ -1,0 +1,91 @@
+
+<div class="cart-container container py-4">
+  <!-- Geolocation Section -->
+  <div class="location-section bg-white rounded shadow-sm p-3 mb-4">
+    <button (click)="getLocation()" class="btn btn-outline-primary mb-3">
+      📍 Get My Location
+    </button>
+
+    <div class="row g-3" *ngIf="city !== 'Unknown' || area !== 'Unknown' || street !== 'Unknown' || pincode !== 'Unknown'">
+      <div class="col-12">
+        <h5 class="text-primary">Your Location</h5>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <label class="form-label">City</label>
+        <input class="form-control" [value]="city" readonly>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <label class="form-label">Area</label>
+        <input class="form-control" [value]="area" readonly>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <label class="form-label">Street</label>
+        <input class="form-control" [value]="street" readonly>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <label class="form-label">Pincode</label>
+        <input class="form-control" [value]="pincode" readonly>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Items -->
+  <div class="cart-section bg-white rounded shadow-sm p-4">
+    <h2 class="text-center text-danger mb-4">🛒 Your Cart</h2>
+
+    <div *ngIf="cartItems.length === 0" class="text-center text-muted">
+      <p>Your cart is empty.</p>
+    </div>
+
+    <div *ngIf="cartItems.length > 0" class="table-responsive">
+      <table class="table align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Dish</th>
+            <th>Restaurant</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cartItems">
+            <td>{{ item.dishName }}</td>
+            <td>{{ item.restaurantName }}</td>
+            <td>₹{{ item.price }}</td>
+            <td>
+              <input type="number" min="1" [(ngModel)]="item.quantity" (change)="updateQuantity(item, item.quantity)" class="form-control form-control-sm text-center quantity-input">
+            </td>
+            <td>₹{{ item.price * (item.quantity || 1) }}</td>
+            <td>
+              <button class="btn btn-sm btn-outline-danger" (click)="removeItem(item)">
+                ✖
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Alerts -->
+      <div *ngIf="showTooFarError" class="alert alert-danger mt-2">
+        We don't deliver beyond 15 km!
+      </div>
+      <div *ngIf="showDeliveryChargeMsg && !showTooFarError" class="alert alert-warning mt-2">
+        Delivery charge of ₹30 per km is applied beyond 3 km.<br>
+        <strong>Total delivery charge: ₹{{ deliveryCharge }}</strong>
+      </div>
+
+      <!-- Totals -->
+      <div class="d-flex justify-content-end mt-3">
+        <h5>Total Amount: ₹{{ totalPrice }}</h5>
+      </div>
+
+      <!-- Buttons -->
+      <div class="d-flex justify-content-between mt-4 flex-wrap gap-2">
+        <button class="btn btn-outline-secondary" (click)="clearCart()">🗑️ Clear Cart</button>
+        <button class="btn btn-success" [disabled]="showTooFarError" (click)="proceedToPayment()">💳 Proceed to Payment</button>
+      </div>
+    </div>
+  </div>
+</div>

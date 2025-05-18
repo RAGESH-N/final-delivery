@@ -1,0 +1,20 @@
+<div class="container profile-wrapper my-5 p-4 shadow-lg rounded">
+    <h2 class="text-center mb-4 fw-bold text-danger">🍽️ Your Profile</h2>
+
+    <div *ngIf="errorMessage" class="alert alert-danger text-center">
+        {{ errorMessage }}
+    </div>
+
+    <div *ngIf="!errorMessage" class="text-center">
+        <img [src]="userData.profilePhoto || 'assets/foodie_logo_.jpg'" alt="Profile Photo" class="img-thumbnail profile-img mb-3" />
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-start">
+                <p><strong>👤 Username:</strong> {{ userData.username }}</p>
+                <p><strong>🆔 User ID:</strong> {{ userData.userid }}</p>
+                <p><strong>📞 Phone:</strong> {{ userData.phone }}</p>
+                <p><strong>📧 Email:</strong> {{ userData.email }}</p>
+                <p><strong>🏠 Address:</strong> {{ userData.address }}</p>
+            </div>
+        </div>
+    </div>
+</div>

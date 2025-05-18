@@ -1,0 +1,29 @@
+.restaurant-dashboard {
+    background-color: #fdfdfd;
+}
+
+.form-card {
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    background-color: #fff;
+}
+
+.dish-card {
+    transition: transform 0.3s;
+}
+
+.dish-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-footer input,
+.card-footer textarea,
+.card-footer select {
+    font-size: 0.875rem;
+}

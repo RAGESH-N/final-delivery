@@ -1,0 +1,117 @@
+<div class="container py-5 restaurant-dashboard">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h2 class="text-success">Welcome, {{ restaurantName }}</h2>
+        <button class="btn btn-outline-danger shadow" (click)="signOut()">Sign Out</button>
+    </div>
+
+    <div class="text-center mb-4">
+        <button class="btn btn-lg btn-danger px-5 py-2 shadow" (click)="openAddDishForm()">
+      <i class="bi bi-plus-circle"></i> Add Dish
+    </button>
+    <button class="btn btn-info" (click)="viewOrders(restaurantName)">View Orders</button>
+    </div>
+
+    <div *ngIf="showAddDishForm" class="card shadow-sm mb-5 form-card">
+        <div class="card-body">
+            <h4 class="text-danger mb-4">Add New Dish</h4>
+            <form (ngSubmit)="addDish()" enctype="multipart/form-data">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" [(ngModel)]="newDish.dishName" name="dishName" placeholder="Dish Name" required />
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" class="form-control" [(ngModel)]="newDish.price" name="price" placeholder="Price" required />
+                    </div>
+                    <div class="col-12">
+                        <textarea class="form-control" [(ngModel)]="newDish.description" name="description" placeholder="Description" required></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="form-select" [(ngModel)]="newDish.cuisine" name="cuisine" required>
+              <option value="" disabled>Select Cuisine</option>
+              <option value="Indian">Indian</option>
+              <option value="Chinese">Chinese</option>
+              <option value="Italian">Italian</option>
+            </select>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center gap-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="Veg" [(ngModel)]="newDish.type" name="type" required />
+                            <label class="form-check-label">Veg</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="Non-Veg" [(ngModel)]="newDish.type" name="type" required />
+                            <label class="form-check-label">Non-Veg</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Upload Image</label>
+                        <input type="file" class="form-control" (change)="handleFileChange($event)" />
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mt-4 gap-3">
+                    <button type="submit" class="btn btn-success px-4">Save</button>
+                    <button type="button" class="btn btn-secondary px-4" (click)="cancelForm()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let dish of dishes">
+            <div class="card shadow-sm h-100 dish-card">
+                <img [src]="'http://localhost:3000' + dish.image" class="card-img-top rounded-top" alt="Dish Image" />
+                <div class="card-body">
+                    <h5 class="card-title text-danger">{{ dish.dishName }}</h5>
+                    <p class="card-text">{{ dish.description }}</p>
+                    <p><strong>Price:</strong> ₹{{ dish.price }}</p>
+                    <p><strong>Cuisine:</strong> {{ dish.cuisine }}</p>
+                    <p><strong>Type:</strong> {{ dish.type }}</p>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-sm btn-warning" (click)="openEditForm(dish)">Edit</button>
+                        <button class="btn btn-sm btn-danger" (click)="deleteDish(dish._id)">Delete</button>
+                    </div>
+                </div>
+
+                <div *ngIf="editDishId === dish._id" class="card-footer bg-light">
+                    <form (ngSubmit)="updateDish()" enctype="multipart/form-data">
+                        <div class="mb-2">
+                            <input type="text" class="form-control" [(ngModel)]="updatedDish.dishName" name="dishName" placeholder="Dish Name" required />
+                        </div>
+                        <div class="mb-2">
+                            <textarea class="form-control" [(ngModel)]="updatedDish.description" name="description" placeholder="Description" required></textarea>
+                        </div>
+                        <div class="mb-2">
+                            <input type="number" class="form-control" [(ngModel)]="updatedDish.price" name="price" placeholder="Price" required />
+                        </div>
+                        <div class="mb-2">
+                            <select class="form-select" [(ngModel)]="updatedDish.cuisine" name="cuisine" required>
+                <option value="" disabled>Select Cuisine</option>
+                <option value="Indian">Indian</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Italian">Italian</option>
+              </select>
+                        </div>
+                        <div class="mb-2 d-flex gap-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="Veg" [(ngModel)]="updatedDish.type" name="type" required />
+                                <label class="form-check-label">Veg</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="Non-Veg" [(ngModel)]="updatedDish.type" name="type" required />
+                                <label class="form-check-label">Non-Veg</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label>Upload Image</label>
+                            <input type="file" class="form-control" (change)="handleFileChange($event)" />
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-success btn-sm">Save</button>
+                            <button type="button" class="btn btn-secondary btn-sm" (click)="cancelForm()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

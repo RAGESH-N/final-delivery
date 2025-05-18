@@ -1,0 +1,43 @@
+.payment-container {
+  background: linear-gradient(to right, #f8f9fa, #fff);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  background-color: #ffffffd9;
+  border-radius: 20px;
+}
+
+input.form-control {
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+input.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.1rem rgba(13, 110, 253, 0.25);
+}
+
+button.btn-success {
+  font-size: 1.1rem;
+  padding: 0.6rem;
+  border-radius: 12px;
+}
+
+.alert {
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+@media (max-width: 576px) {
+  .card {
+    padding: 1.5rem 1rem;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+}

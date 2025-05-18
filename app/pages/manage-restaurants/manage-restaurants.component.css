@@ -1,0 +1,42 @@
+.manage-restaurant-container {
+    background-color: #fffefc;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+    font-size: 14px;
+    padding: 12px;
+}
+
+.table thead {
+    font-size: 15px;
+}
+
+.btn-success,
+.btn-danger {
+    font-weight: 500;
+    font-size: 13px;
+    border-radius: 4px;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}

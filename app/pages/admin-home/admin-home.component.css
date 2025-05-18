@@ -1,0 +1,27 @@
+.admin-panel {
+    background-color: #fffdf9;
+    border: 1px solid #ffe0b2;
+}
+
+
+/* Optional: Adjust table rows for clean UI */
+
+.table td,
+.table th {
+    vertical-align: middle;
+}
+
+
+/* Responsive padding and radius on buttons if needed */
+
+.btn {
+    border-radius: 6px;
+}
+
+
+/* Highlight form section */
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.15);
+}

@@ -1,0 +1,25 @@
+input.form-control {
+  border-radius: 0.4rem;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+  font-size: 0.95rem;
+}
+
+.table thead th {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-outline-danger,
+.btn-outline-dark,
+.btn-outline-warning {
+  border-radius: 20px;
+  padding: 0.25rem 0.75rem;
+}
+
+.table-warning input.form-control {
+  background-color: #fff7e6;
+}

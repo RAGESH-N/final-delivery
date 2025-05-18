@@ -1,0 +1,80 @@
+<!-- view-restaurant.component.html -->
+<div class="container mt-5">
+  <h2 class="text-center mb-4 text-danger fw-bold">All Restaurants</h2>
+
+  <!-- Search bar -->
+  <div class="mb-4">
+    <input
+      type="text"
+      class="form-control shadow-sm"
+      placeholder="🔍 Search by restaurant name"
+      [(ngModel)]="searchTerm"
+      (input)="searchRestaurants()"
+    />
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered align-middle shadow-sm rounded">
+      <thead class="table-danger text-center">
+        <tr>
+          <th>Restaurant Name</th>
+          <th>Owner</th>
+          <th>Address</th>
+          <th>FSSAI Code</th>
+          <th>Aadhar</th>
+          <th>Phone</th>
+          <th>Bank Acc.</th>
+          <th>Email</th>
+          <th>City</th>
+          <th>Geolocation</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let restaurant of filteredRestaurants" [ngClass]="{ 'table-light': editedRestaurantId !== restaurant._id, 'table-warning': editedRestaurantId === restaurant._id }">
+          <ng-container *ngIf="editedRestaurantId !== restaurant._id; else editRow">
+            <td>{{ restaurant.restaurantName }}</td>
+            <td>{{ restaurant.shopOwnerName }}</td>
+            <td>{{ restaurant.shopAddress }}</td>
+            <td>{{ restaurant.fssaiCode }}</td>
+            <td>{{ restaurant.aadharNumber }}</td>
+            <td>{{ restaurant.phoneNumber }}</td>
+            <td>{{ restaurant.bankAccountNumber }}</td>
+            <td>{{ restaurant.mailId }}</td>
+            <td>{{ restaurant.city }}</td>
+            <td>{{ restaurant.geoLocation }}</td>
+            <td class="text-center">
+              <button class="btn btn-outline-danger btn-sm me-2" (click)="startEdit(restaurant)">
+                <i class="bi bi-pencil-square"></i> Edit
+              </button>
+              <button class="btn btn-outline-dark btn-sm" (click)="deleteRestaurant(restaurant._id)">
+                <i class="bi bi-trash3"></i> Delete
+              </button>
+            </td>
+          </ng-container>
+
+          <ng-template #editRow>
+            <td><input [(ngModel)]="editCache.restaurantName" class="form-control" /></td>
+            <td><input [(ngModel)]="editCache.shopOwnerName" class="form-control" /></td>
+            <td><input [(ngModel)]="editCache.shopAddress" class="form-control" /></td>
+            <td><input [(ngModel)]="editCache.fssaiCode" class="form-control" /></td>
+            <td><input [(ngModel)]="editCache.aadharNumber" class="form-control" /></td>
+            <td><input [(ngModel)]="editCache.phoneNumber" class="form-control" /></td>
+            <td><input [(ngModel)]="editCache.bankAccountNumber" class="form-control" /></td>
+            <td><input [(ngModel)]="editCache.mailId" class="form-control" /></td>
+            <td><input [(ngModel)]="editCache.city" class="form-control" /></td>
+            <td><input [(ngModel)]="editCache.geoLocation" class="form-control" /></td>
+            <td class="text-center">
+              <button class="btn btn-success btn-sm me-2" (click)="saveEdit(restaurant._id)">
+                <i class="bi bi-check2-circle"></i> Save
+              </button>
+              <button class="btn btn-secondary btn-sm" (click)="cancelEdit()">
+                <i class="bi bi-x-circle"></i> Cancel
+              </button>
+            </td>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
